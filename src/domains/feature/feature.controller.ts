@@ -1,13 +1,14 @@
 import { Controller, Get, Req, UseGuards } from '@nestjs/common';
 import { AuthGuard } from '@nestjs/passport';
 
+import { FeatureService } from './feature.service';
+
 @Controller('feature')
 export class FeatureController {
+  constructor(private readonly featureService: FeatureService) {}
   @Get()
   @UseGuards(AuthGuard())
-  async create(@Req() req: any): Promise<Record<string, string>> {
-    console.log(req.user);
-    const user: Record<string, string> = req.user;
-    return user;
+  async find(): Promise<Record<string, string>> {
+    return this.featureService.find();
   }
 }
