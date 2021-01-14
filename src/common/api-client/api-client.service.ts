@@ -1,22 +1,29 @@
 import { HttpService, Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { UsersService } from 'common/users';
+import { Config } from 'nestjs-config';
 
 @Injectable()
 export class ApiClientService {
   constructor(
-    private readonly userService: UsersService,
-    private readonly httpService: HttpService,
-  ) {}
-
-  getSomething(): Record<string, string> {
-    const user = this.userService.getUser();
-    return {
-      some: user.username,
-      baseURL: this.httpService.axiosRef.defaults.baseURL,
-    };
+    protected userService: UsersService,
+    public httpService: HttpService,
+    config: ConfigService, 
+  ) {
+    this.httpService.axiosRef.defaults.baseURL = config.get('api-client.url')
   }
 
+  // getSomething(): Record<string, string> {
+  //   const user = this.userService.getUser();
+    
+  //   return {
+  //     some: user.username,
+  //     baseURL: this.httpService.axiosRef.defaults.baseURL,
+  //   };
+  // }
+
   setToken() {
-    this.httpService.axiosRef.defaults.headers = { Autorization: '123' };
+    const headers = {...this.httpService.axiosRef.defaults.headers, Autorization: '123' }
+    this.httpService.axiosRef.defaults.headers = headers;
   }
 }

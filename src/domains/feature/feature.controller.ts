@@ -9,6 +9,6 @@ export class FeatureController {
   @Get()
   @UseGuards(AuthGuard())
   async find(): Promise<Record<string, string>> {
-    return this.featureService.find();
+    return await this.featureService.find();
   }
 }
