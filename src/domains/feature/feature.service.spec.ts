@@ -1,18 +1,49 @@
+import { HttpModule } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { Test, TestingModule } from '@nestjs/testing';
+import { AuthModule } from 'auth';
+import { ApiClientModule } from 'common';
+import { UsersModule } from 'common/users/users.module';
+import { FeatureClientService } from './feature-client.service';
 import { FeatureService } from './feature.service';
 
+
 describe('FeatureService', () => {
-  let service: FeatureService;
+  let featureService: FeatureService;
+  let featureClientService: FeatureClientService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [FeatureService],
+      imports: [
+        AuthModule,
+        ApiClientModule,
+        UsersModule,
+        HttpModule,
+        ConfigModule,
+      ],
+      providers: [FeatureService, FeatureClientService],
     }).compile();
 
-    service = module.get<FeatureService>(FeatureService);
+    featureService = module.get<FeatureService>(FeatureService);
+    featureClientService = module.get<FeatureClientService>(
+      FeatureClientService,
+    );
   });
 
   it('should be defined', () => {
-    expect(service).toBeDefined();
+    expect(featureService).toBeDefined();
   });
+
+  describe('find', () => {
+    it('should return object', async () => {
+      const result = { a: '1234' };
+
+      jest
+        .spyOn(featureClientService, 'getSomething')
+        .mockImplementation(async () => result);
+
+      expect(await featureService.find()).toBe(result);
+    });
+  });
+
 });

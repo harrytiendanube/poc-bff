@@ -21,7 +21,10 @@ function applyTokenInMethod(): (
   ): PropertyDescriptor => {
     const method = descriptor.value;
     descriptor.value = function(...args: any[]) {
-      this.setToken();
+      if (typeof this.setToken === 'function') {
+        this.setToken();
+      }
+
       return method.apply(this, args);
     };
     return descriptor;
