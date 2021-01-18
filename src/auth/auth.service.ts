@@ -35,8 +35,14 @@ export class AuthService {
   }
 
   async validateUser(payload: JwtPayload): Promise<Record<string, string>> {
-    this.usersService.setUser( { username: payload.username });
-    
+    this.usersService.setUser({ username: payload.username });
+
     return { user: payload.username };
+  }
+
+  async validateToken(token: string): Promise<boolean> {
+    this.usersService.setToken(token);
+
+    return true;
   }
 }

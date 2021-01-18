@@ -13,6 +13,11 @@ export class FeatureClientService extends ApiClientService {
     //   console.log(e);
     // }
 
-    return { a: '123' };
+    return { a: this.userService.getUser().username };
+  }
+
+  async getTokenUser(): Promise<Record<string, string>> {
+
+    return { a: this.userService.getUser().token };
   }
 }

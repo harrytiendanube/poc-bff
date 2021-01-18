@@ -33,6 +33,7 @@
     "nestjs-config": "^1.4.7",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
+    "passport-unique-token": "^2.0.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.5.4"
@@ -65,7 +66,10 @@
       "json",
       "ts"
     ],
-    "moduleDirectories": ["node_modules", "src"],
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ],
     "rootDir": "src",
     "testRegex": ".spec.ts$",
     "transform": {

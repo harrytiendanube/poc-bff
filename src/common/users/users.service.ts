@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
 
 export class User {
-  public username: string = 'default';
-}
+         public username: string;
+         public token: string;
+       }
 
 @Injectable()
 export class UsersService {
@@ -17,6 +18,14 @@ export class UsersService {
 
   getUser() {
     return this.user;
+  }
+
+  setToken(token: string) {
+    this.user.token = token;
+  }
+
+  getToken(): string {
+    return this.user.token;
   }
 
   async findByLogin({
