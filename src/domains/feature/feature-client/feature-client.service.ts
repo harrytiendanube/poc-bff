@@ -6,18 +6,12 @@ import { ApiClientService, ApplyTokenApi } from 'common';
 @ApplyTokenApi()
 export class FeatureClientService extends ApiClientService {
   async getSomething(): Promise<Record<string, string>> {
-    // try {
-    //   const a = await this.httpService.get('/asdf').toPromise();
-    //   console.log(a.data);
-    // } catch (e) {
-    //   console.log(e);
-    // }
+    await this.httpService.get('/').toPromise();
 
-    return { a: this.userService.getUser().username };
+    return { a: '1' };
   }
 
   async getTokenUser(): Promise<Record<string, string>> {
-
-    return { a: this.userService.getUser().token };
+    return { a: '2' };
   }
 }

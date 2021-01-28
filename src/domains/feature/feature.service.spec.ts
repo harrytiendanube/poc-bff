@@ -4,7 +4,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { AuthModule } from 'auth';
 import { ApiClientModule } from 'common';
 import { UsersModule } from 'common/users/users.module';
-import { FeatureClientService } from './feature-client.service';
+import { FeatureClientService } from './feature-client/feature-client.service';
 import { FeatureService } from './feature.service';
 
 

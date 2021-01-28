@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 
-import { ApiClientService } from 'common';
-import { FeatureClientService } from './feature-client.service';
+ import { FeatureClientService } from './feature-client';
 
 @Injectable()
 export class FeatureService {

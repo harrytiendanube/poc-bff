@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { FeatureController } from './feature.controller';
+import { FeatureController } from '../feature.controller';
 
 describe('FeatureController', () => {
   let controller: FeatureController;
