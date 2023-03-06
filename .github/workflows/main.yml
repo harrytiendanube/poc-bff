@@ -1,4 +1,4 @@
-name: Approve Sync to Integration 🚀
+name: Approve Sync PR to Integration 🚀
 on: 
   pull_request_target:
     branches:
@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
-    if:  startsWith(github.event.pull_request.head.ref, 'sync/')
+    if:  startsWith(github.event.pull_request.head.ref, 'sync/') || github.event.pull_request.head.ref == 'master'
     steps:
       - uses: hmarr/auto-approve-action@v3
         with:
