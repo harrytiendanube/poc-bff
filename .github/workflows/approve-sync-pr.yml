@@ -12,6 +12,3 @@ jobs:
     steps:
       - name: Head ref is
         run: echo ${{ github.event.pull_request.head.ref }}
-      - uses: hmarr/auto-approve-action@v3
-        with:
-          review-message: "Ready to sync 🚀"
