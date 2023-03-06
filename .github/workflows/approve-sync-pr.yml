@@ -1,0 +1,14 @@
+name: Approve Sync PR to Integration 🚀
+on: 
+  pull_request_target:
+    branches:
+      - 'int/**'
+      
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - name: Head ref is
+        run: echo ${{ github.event.pull_request.head.ref }}
